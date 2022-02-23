@@ -1,1 +1,5 @@
 1. Just pushed it after complete of few steps for admin pannel
+
+Second commit:
+1. Added 2 actions for MovieAdmin class to publish and unpublish movies
+2. Create .gitignore to ignore /venv
