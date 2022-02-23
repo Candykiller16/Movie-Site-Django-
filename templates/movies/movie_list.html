@@ -1,7 +1,6 @@
 {% extends 'movies/base.html' %}
-{% block header %}
-    bg1
-{% endblock header %}
+{% block title %} {% endblock title %}
+{% block header %} bg1 {% endblock header %}
 {% block movie %}
     <div class="left-ads-display col-lg-9">
         <div class="row">
@@ -12,29 +11,33 @@
                             <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
                         </div>
                         <div class="item-info-product">
-                            <h4>
-                                <a href="{{ movie.get_absolute_url }}" class="editContent">{{ movie.title }}</a>
+                            <h4 class="">
+                                <a href="{{ movie.get_absolute_url }}"
+                                   class="editContent">
+                                    {{ movie.title }}
+                                </a>
                             </h4>
+
                             <div class="product_price">
-                                <div class="grid-price ">
-                                    <span class="money ">{{ movie.tagline }}</span>
+                                <div class="grid-price">
+                                    <span class="money editContent">{{ movie.tagline }}</span>
                                 </div>
                             </div>
                             <ul class="stars">
-                                <li>
-                                    <a href="#"><span class="fa fa-star" aria-hidden="true"></span></a>
+                                <li><a href="#"><span class="fa fa-star"
+                                                      aria-hidden="true"></span></a>
                                 </li>
-                                <li>
-                                    <a href="#"><span class="fa fa-star" aria-hidden="true"></span></a>
+                                <li><a href="#"><span class="fa fa-star"
+                                                      aria-hidden="true"></span></a>
                                 </li>
-                                <li>
-                                    <a href="#"><span class="fa fa-star" aria-hidden="true"></span></a>
+                                <li><a href="#"><span class="fa fa-star-half-o"
+                                                      aria-hidden="true"></span></a>
                                 </li>
-                                <li>
-                                    <a href="#"><span class="fa fa-star-half-o" aria-hidden="true"></span></a>
+                                <li><a href="#"><span class="fa fa-star-half-o"
+                                                      aria-hidden="true"></span></a>
                                 </li>
-                                <li>
-                                    <a href="#"><span class="fa fa-star-o" aria-hidden="true"></span></a>
+                                <li><a href="#"><span class="fa fa-star-o"
+                                                      aria-hidden="true"></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -42,9 +45,9 @@
                 </div>
             {% endfor %}
         </div>
-        <!--<div class="grid-img-right mt-4 text-right bg bg1">
-                            <span class="money editContent">Flat 50% Off</span>
-                            <a href="moviesingle.html" class="btn">Now</a>
-                        </div>-->
+        <!--<div class="grid-img-right mt-4 text-right bg bg1" >
+            <span class="money editContent" >Flat 50% Off</span>
+            <a href="moviesingle.html" class="btn" >Now</a>
+        </div>-->
     </div>
 {% endblock movie %}

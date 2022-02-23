@@ -6,3 +6,6 @@ Second commit:
 
 Third commit:
 1.Added movie_tag.py to get categories and to render sidebar with last movies
+
+Fourth commit
+1.Added filters for genres and years in sidebar

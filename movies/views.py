@@ -1,13 +1,24 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
 
-from .models import Movie, Category
+from .models import Movie, Category, Actor, Genre
 from django.views.generic.base import View
 
 from .forms import RewiesForm
 
 
-class MoviesView(ListView):
+class GenreYear:
+    """Жанры и года выхода фильмов"""
+
+    def get_genres(self):
+        return Genre.objects.all()
+
+    def get_years(self):
+        return Movie.objects.filter(draft=False).values("year")
+
+
+class MoviesView(GenreYear, ListView):
     """Список фильмов"""
 
     model = Movie
@@ -25,7 +36,7 @@ class MoviesView(ListView):
     #     return render(request, 'movie_list.html', context)
 
 
-class MovieDetailView(DetailView):
+class MovieDetailView(GenreYear, DetailView):
     """Полное описание фильма"""
 
     model = Movie
@@ -43,7 +54,7 @@ class MovieDetailView(DetailView):
     #     return render(request, 'movies/movie_detail.html', context)
 
 
-class AddReviewView(View):
+class AddReviewView(GenreYear, View):
     """Отзывы"""
 
     def post(self, request, pk):
@@ -56,3 +67,22 @@ class AddReviewView(View):
             form.movie = movie
             form.save()
         return redirect(movie.get_absolute_url())
+
+
+class ActorView(GenreYear, DetailView):
+    """Вывод информации об актере"""
+    model = Actor
+    template_name = 'movies/actor.html'
+    slug_field = "name"
+
+
+class FilterMovieView(GenreYear, ListView):
+    """Фильтр фильмов"""
+
+    def get_queryset(self):
+        queryset = Movie.objects.filter(
+            Q(year__in=self.request.GET.getlist("year")) |
+            Q(genres__in=self.request.GET.getlist("genres"))
+        )
+        # фильтрация,которая будет обрабатываться после получения с frontend
+        return queryset
