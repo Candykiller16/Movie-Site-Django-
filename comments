@@ -3,3 +3,6 @@
 Second commit:
 1. Added 2 actions for MovieAdmin class to publish and unpublish movies
 2. Create .gitignore to ignore /venv
+
+Third commit:
+1.Added movie_tag.py to get categories and to render sidebar with last movies

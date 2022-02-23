@@ -1,3 +1,4 @@
+{% load movie_tags %}
 <header class="header">
     <div class="container-fluid px-lg-5">
         <!-- nav -->
@@ -21,7 +22,7 @@
             <input type="checkbox" id="drop">
             <ul class="menu mt-2">
                 <li class="active">
-                    <a href="index.html">Главная</a>
+                    <a href="{% url 'movie_list' %}">Главная</a>
                 </li>
                 <li>
                     <!-- First Tier Drop Down -->
@@ -31,15 +32,12 @@
                     <a href="#">Категории <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                     <input type="checkbox" id="drop-2">
                     <ul>
-                        <li>
-                            <a href="moviesingle.html">Фильмы</a>
-                        </li>
-                        <li>
-                            <a href="moviesingle.html">Сериалы</a>
-                        </li>
-                        <li>
-                            <a href="moviesingle.html">Мультфильмы</a>
-                        </li>
+                        {% get_categories as categories %}
+                        {% for category in categories %}
+                            <li>
+                                <a href="#">{{ category.name }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li>

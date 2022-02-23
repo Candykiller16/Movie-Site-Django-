@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
 
-from .models import Movie
+from .models import Movie, Category
 from django.views.generic.base import View
 
 from .forms import RewiesForm
@@ -13,6 +13,11 @@ class MoviesView(ListView):
     model = Movie
     queryset = Movie.objects.filter(draft=False)
     template_name = 'movies/movie_list.html'
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     context['categories'] = Category.objects.all()
+    #     return context
 
     # def get(self, request):
     #     movies = Movie.objects.all()
@@ -26,6 +31,11 @@ class MovieDetailView(DetailView):
     model = Movie
     slug_field = "url"
     template_name = 'movies/movie_detail.html'
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     context['categories'] = Category.objects.all()
+    #     return context
 
     # def get(self, request, slug):
     #     movie = Movie.objects.get(url=slug)
